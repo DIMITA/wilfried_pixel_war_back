@@ -21,6 +21,15 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+
+## _Utiliser docker_
+```sh
+docker compose build
+docker compose up -d
+```
+
+l'application est accessible sur le port 3008
+
 if the env file is config, those cmd will generate table if it not exists
 
 ## Test
