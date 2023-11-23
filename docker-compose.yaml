@@ -1,0 +1,35 @@
+version: "3.8"
+services:
+    # Mysql database container
+    db:
+        image: mysql
+        container_name: db_pixel_war
+        restart: on-failure
+        volumes:
+            - db-data:/var/lib/mysql
+        environment:
+            MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+            MYSQL_DATABASE: pixel_war_db
+            MYSQL_PASSWORD: rootpw
+            MYSQL_USER: user
+        networks:
+            - pixel_war
+
+    node:
+        build:
+            context: .
+            dockerfile: docker/Dockerfile
+        restart: on-failure
+        ports:
+            - "3008:3000"  # Notez la syntaxe avec des guillemets autour des ports
+        env_file:
+            - .env
+        networks:
+            - pixel_war
+
+networks:
+    pixel_war:
+
+
+volumes:
+    db-data:
