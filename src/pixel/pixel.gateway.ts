@@ -22,6 +22,7 @@ export class PixelGateway {
   async create(@MessageBody() createPixelDto: CreatePixelDto) {
     const message = await this.pixelService.create(createPixelDto);
     this.server.emit('message', message);
+    
     return message;
   }
 
